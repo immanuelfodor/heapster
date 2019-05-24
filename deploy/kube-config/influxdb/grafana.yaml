@@ -13,7 +13,7 @@ spec:
     spec:
       containers:
       - name: grafana
-        image: k8s.gcr.io/heapster-grafana-amd64:v5.0.4
+        image: k8s.gcr.io/heapster-grafana-amd64:v4.4.3
         ports:
         - containerPort: 3000
           protocol: TCP
@@ -64,7 +64,7 @@ spec:
   # or through a public IP.
   # type: LoadBalancer
   # You could also use NodePort to expose the service at a randomly-generated port
-  # type: NodePort
+  type: NodePort
   ports:
   - port: 80
     targetPort: 3000

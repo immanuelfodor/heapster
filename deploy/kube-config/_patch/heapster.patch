@@ -1,0 +1,26 @@
+diff --git a/deploy/kube-config/influxdb/heapster.yaml b/deploy/kube-config/influxdb/heapster.yaml
+index e820ca5..195061a 100644
+--- a/deploy/kube-config/influxdb/heapster.yaml
++++ b/deploy/kube-config/influxdb/heapster.yaml
+@@ -24,7 +24,7 @@ spec:
+         imagePullPolicy: IfNotPresent
+         command:
+         - /heapster
+-        - --source=kubernetes:https://kubernetes.default
++        - --source=kubernetes.summary_api:''?useServiceAccount=true&kubeletHttps=true&kubeletPort=10250&insecure=true
+         - --sink=influxdb:http://monitoring-influxdb.kube-system.svc:8086
+ ---
+ apiVersion: v1
+diff --git a/deploy/kube-config/rbac/heapster-rbac.yaml b/deploy/kube-config/rbac/heapster-rbac.yaml
+index 6e63803..1f982fb 100644
+--- a/deploy/kube-config/rbac/heapster-rbac.yaml
++++ b/deploy/kube-config/rbac/heapster-rbac.yaml
+@@ -5,7 +5,7 @@ metadata:
+ roleRef:
+   apiGroup: rbac.authorization.k8s.io
+   kind: ClusterRole
+-  name: system:heapster
++  name: heapster
+ subjects:
+ - kind: ServiceAccount
+   name: heapster
